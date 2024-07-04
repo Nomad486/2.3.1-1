@@ -59,7 +59,7 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             return "update";
         }
-        // Установка полей age и surname перед вызовом updateUser
+
         user.setAge(age);
         user.setSurname(surname);
         userService.updateUser(id, user);

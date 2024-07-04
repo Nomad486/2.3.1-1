@@ -1,21 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>User List</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+        crossorigin="anonymous">
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      color: #333;
-      margin: 20px;
-    }
-
-    h1, h2, h3 {
-      color: #007bff;
-    }
-
     .user-container {
       margin-bottom: 20px;
       border: 1px solid #ccc;
@@ -26,6 +17,10 @@
     .user-info {
       font-size: 18px;
       margin-bottom: 5px;
+    }
+
+    .user-age {
+      color: #6c757d;
     }
 
     .action-link {
@@ -57,16 +52,18 @@
   </style>
 </head>
 <body>
-
-<div>
+<div class="container text-center mt-5">
   <h2>User List</h2>
   <div th:each="user : ${users}" class="user-container">
-    <p class="user-info" th:text="${user.toString()}"></p>
+    <p class="user-info">
+      <span th:text="${user.getName()}"></span>
+      <span th:text="${' ' + user.getSurname()}"></span>
+    </p>
+    <p class="user-age">Age: <span th:text="${user.getAge()}"></span></p>
     <a th:href="@{/update(id=${user.getId()})}" class="action-link">Update User</a>
     <a th:href="@{/delete(id=${user.getId()})}" class="action-link" style="color: #f44336;">Delete User</a>
   </div>
   <a href="/create" class="btn">Create New User</a>
 </div>
-
 </body>
 </html>
