@@ -2,15 +2,71 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title></title>
+  <meta charset="UTF-8">
+  <title>User List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      margin: 20px;
+    }
+
+    h1, h2, h3 {
+      color: #007bff;
+    }
+
+    .user-container {
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 4px;
+    }
+
+    .user-info {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .action-link {
+      text-decoration: none;
+      color: #007bff;
+      margin-right: 10px;
+    }
+
+    .action-link:hover {
+      text-decoration: underline;
+    }
+
+    .btn {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #0056b3;
+    }
+  </style>
 </head>
 <body>
+
 <div>
-    <th:block th:each="msg : ${messages}">
-        <h1 th:text="${msg}"></h1>
-    </th:block>
+  <h2>User List</h2>
+  <div th:each="user : ${users}" class="user-container">
+    <p class="user-info" th:text="${user.toString()}"></p>
+    <a th:href="@{/update(id=${user.getId()})}" class="action-link">Update User</a>
+    <a th:href="@{/delete(id=${user.getId()})}" class="action-link" style="color: #f44336;">Delete User</a>
+  </div>
+  <a href="/create" class="btn">Create New User</a>
 </div>
-<a href="cars">CARS</a>
+
 </body>
 </html>
